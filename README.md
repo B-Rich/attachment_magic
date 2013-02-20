@@ -11,7 +11,7 @@ gem install attachment_magic
 Or put it in your `Gemfile`
 
 ```ruby
-gem 'attachment_magic'
+gem 'attachment_magic', :github => 'magiclabs/attachment_magic'
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ end
 
 ## Forms
 
-```ruby
+```erb
 <%= form_for :attachment, :html => { :multipart => true } do |f| %>
   <p><%= f.file_field :uploaded_data %></p>
   <p><%= submit_tag :Save %>
@@ -65,7 +65,7 @@ The `:html => { :multipart => true }` is important.
 
 ### Examples:
 
-```
+```ruby
 has_attachment :max_size => 1.kilobyte
 has_attachment :size => 1.megabyte..2.megabytes
 has_attachment :content_type => 'application/pdf'
