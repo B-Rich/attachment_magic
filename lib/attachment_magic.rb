@@ -118,6 +118,7 @@ module AttachmentMagic
     end
 
     def self.extended(base)
+      base.attr_accessible :uploaded_data
       base.class_attribute :attachment_options
       base.before_validation :set_size_from_temp_path
       base.after_save :after_process_attachment
