@@ -75,8 +75,8 @@ module AttachmentMagic
 
       attachment_options[:storage]     ||= :file_system
       attachment_options[:storage]     ||= parent_options[:storage]
-      attachment_options[:path_prefix] ||= attachment_options[:file_system_path]
-      if attachment_options[:path_prefix].nil?
+      attachment_options[:path_prefix] ||= attachment_options[:file_system_path].to_s
+      if attachment_options[:path_prefix].blank?
         File.join("public", table_name)
       end
       attachment_options[:path_prefix]   = attachment_options[:path_prefix][1..-1] if options[:path_prefix].first == '/'
@@ -152,7 +152,7 @@ module AttachmentMagic
     def content_type=(new_type)
       write_attribute :content_type, new_type.to_s.strip
     end
-    
+
     # Detects the mime-type if content_type is 'application/octet-stream'
     def detect_mimetype(file_data)
       if file_data.content_type.strip == "application/octet-stream"
@@ -293,7 +293,7 @@ module AttachmentMagic
       end
 
   end
-  
+
 end
 
 ActiveRecord::Base.send(:extend, AttachmentMagic::ActMethods)
