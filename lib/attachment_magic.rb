@@ -185,7 +185,6 @@ module AttachmentMagic
     #
     #   @attachment = Attachment.create! params[:attachment]
     #
-    # TODO: Allow it to work with Merb tempfiles too.
     def uploaded_data=(file_data)
       if file_data.respond_to?(:content_type)
         return nil if file_data.size == 0
